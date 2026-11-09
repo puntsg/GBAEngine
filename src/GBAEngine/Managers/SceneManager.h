@@ -1,13 +1,9 @@
 #pragma once
 #include "bn_unordered_map.h"
 #include "bn_string_view.h"
-#include "Scene.h"
+#include "../Entities/Scene.h"
 
 #define SM SceneManager::Instance()
-
-// Butano is built without the C++ standard library runtime (no exceptions/heap),
-// so std::string / std::unordered_map can't be linked. Use Butano's fixed-size containers.
-// Scene names are string_views: pass string literals (or strings that outlive the manager).
 class SceneManager
 {
 private:

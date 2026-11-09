@@ -1,11 +1,11 @@
 #pragma once
 #include "AABB.h"
 #include "Transform.h"
-#include <vector>
+#include "bn_vector.h"
 class Rigidbody
 {
 private:
-	std::vector<AABB*> colliders;
+	bn::vector<AABB*, 4> colliders;
 	Transform* transform;
 	Vector2 velocity;
 	float angularVelocity;
@@ -30,6 +30,7 @@ public:
 	void RemoveColliders() {
 			for (AABB* collider: colliders)
 				delete collider;
+			colliders.clear();
 	}
 	bool CheckCollision(const Rigidbody* other) {
 		for (AABB* myCol : colliders) {

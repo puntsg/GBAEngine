@@ -1,13 +1,13 @@
 #pragma once
-//#include "Object.h"
-//#include <vector>
-//#include "Spawner.h"
+#include "Object.h"
+#include "bn_vector.h"
+#include "Spawner.h"
 
 class Scene
 {
 protected:
-	//std::vector<Object*> ui;
-	//std::vector<Object*> objects;
+	bn::vector<Object*, 16> ui;
+	bn::vector<Object*, 64> objects;
 
 public:
 	Scene() = default;
@@ -15,5 +15,4 @@ public:
 	virtual void OnEnter() = 0;
 	virtual void OnExit();
 	virtual void Update();
-	virtual void Render();
 };
