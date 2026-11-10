@@ -7,24 +7,30 @@
 //Scenes
 #include "GBAEngine/Entities/Scene.h"
 #include "GBAEngine/Managers/SceneManager.h"
+#include "GBAEngine/Managers/PhysicsManager.h"
 
 
 class MainMenuScene : public Scene
 {
     
 public:
-    MainMenuScene(): Scene(),sprite (bn::sprite_items::rowlet.create_sprite(0, 0)) {};
+    Rowlet rowlet;
+    MainMenuScene(): Scene() {};
     ~MainMenuScene() = default;
     void OnEnter() override {
         bn::bg_palettes::set_transparent_color(bn::color(0, 0, 31));
         bn::sprite_text_generator text_generator(common::variable_8x16_sprite_font);
         text_generator.set_center_alignment();
-        text_generator.generate(0, 0, "Hola walter", text_sprites);
+        text_generator.generate(0, 0, "Tu madre tiene una polla", text_sprites);
+        //rowlet = Rowlet();
+    }
+    void Update() override {
+        Scene::Update();   // objects, spawner, ui...
+        rowlet.Update();   // rowlet no és a 'objects', així que l'actualitzem a mà
     }
 
 private:
      bn::vector<bn::sprite_ptr, 32> text_sprites;
-     bn::optional<bn::sprite_ptr> sprite;
 };
 
 int main()
@@ -37,6 +43,7 @@ int main()
 
     while(true)
     {
+        PM.UpdatePhysics();
         SM.UpdateCurrentScene();
         bn::core::update();
     }

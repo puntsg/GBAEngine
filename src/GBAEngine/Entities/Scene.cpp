@@ -31,15 +31,4 @@ void Scene::Update() {
 		o->Update();
 	for (Object* o : ui)
 		o->Update();
-	//Update physics
-	for (int i = 0; i < objects.size(); i++)
-	{
-		for (int j = i+1; j < objects.size(); j++)
-		{
-			//if (objects[i]->GetRigidBody()->CheckCollision(objects[j]->GetRigidBody())) {
-			//	objects[i]->OnCollisionEnter(objects[j]);
-			//	objects[j]->OnCollisionEnter(objects[i]);
-			//}
-		}
-	}
 }
